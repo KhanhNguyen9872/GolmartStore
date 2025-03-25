@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Cart - Golmart Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+    rel="stylesheet"
+  />
+  <link href="/css/home.css" rel="stylesheet" />
+</head>
+<body class="bg-[#fef4e9] text-black p-6">
+  <!-- Decorative Background Images -->
+  <div class="background-images">
+    <img src="/images/leaf.png" class="decorative-img leaf1" alt="Leaf decoration" />
+    <img src="/images/leaf_1.png" class="decorative-img leaf2" alt="Leaf decoration" />
+    <img src="/images/leaf_2.png" class="decorative-img leaf3" alt="Leaf decoration" />
+    <img src="/images/clover.png" class="decorative-img clover" alt="Clover decoration" />
+    <img src="/images/leaf-fall.png" class="decorative-img leaf-fall" alt="Falling leaf decoration" />
+    <img src="/images/maple-leaf.png" class="decorative-img maple-leaf" alt="Maple leaf decoration" />
+  </div>
+
+  <!-- Main Layout Container -->
+  <div class="flex flex-col md:flex-row min-h-screen">
+    <!-- Sidebar -->
+    <div class="bg-[#fef4e9] p-6 md:w-[15%] flex flex-col items-start">
+      <div class="flex items-center mb-8">
+        <i class="fas fa-seedling text-7xl mr-2"></i>
+        <div class="flex flex-col">
+          <span class="text-3xl font-bold">GOLMART</span>
+          <span class="text-3xl font-bold">STORE</span>
+        </div>
+      </div>
+      <nav class="flex flex-col space-y-4 w-full">
+        <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/">HOME</a>
+        <a class="text-xl font-bold bg-[#d0e4a4] p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/cart.html">CART</a>
+        <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/contact.html">CONTACT</a>
+        <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/catalog.html">CATALOG</a>
+        <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/testimonials.html">TESTIMONIALS</a>
+      </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 p-6">
+      <!-- Search Bar -->
+      <div class="flex justify-end items-center mb-8">
+        <form action="search.html" method="get" class="relative">
+          <input
+            name="q"
+            class="bg-[#f8d4ac] border border-gray-300 rounded-full py-2 px-4 pl-10"
+            style="width: 320px;"
+            placeholder="Search products..."
+            type="text"
+            aria-label="Search"
+          />
+          <button
+            type="submit"
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 bg-transparent border-none p-0"
+            aria-label="Search"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        <a
+          href="/login.html"
+          id="login-button"
+          class="ml-4 bg-red-800 text-white font-bold py-2 px-4 rounded-full"
+        >
+          Login
+        </a>
+        <a
+          href="/profile.html"
+          id="user-button"
+          class="ml-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-full hidden"
+        >
+          <i class="fas fa-user"></i> <span id="user-name">Full name</span>
+        </a>
+      </div>
+
+      <!-- Cart Content -->
+      <div class="mb-8 px-10 pr-16">
+        <h1 class="text-4xl font-bold mb-4">Your Cart</h1>
+        <table class="w-full mb-4 border-collapse">
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="p-2 text-left font-bold">Product</th>
+              <th class="p-2 text-left font-bold">Price</th>
+              <th class="p-2 text-left font-bold">Quantity</th>
+              <th class="p-2 text-left font-bold">Total</th>
+              <th class="p-2 text-left font-bold">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Example Cart Item -->
+            <tr class="border-b">
+              <td class="p-2">Aglaonema Red</td>
+              <td class="p-2">$29.99</td>
+              <td class="p-2">
+                <input
+                  type="number"
+                  value="1"
+                  min="1"
+                  class="w-16 p-1 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </td>
+              <td class="p-2">$29.99</td>
+              <td class="p-2">
+                <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Remove</button>
+              </td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+
+        <!-- Cart Summary -->
+        <div class="flex justify-end">
+          <div class="w-1/3 bg-gray-100 p-4 rounded">
+            <div class="flex justify-between mb-2">
+              <span>Subtotal</span>
+              <span>$29.99</span>
+            </div>
+            <div class="flex justify-between mb-2">
+              <span>Discount</span>
+              <span>$0.00</span>
+            </div>
+            <div class="flex justify-between mb-2">
+              <span>Tax</span>
+              <span>$2.00</span>
+            </div>
+            <div class="flex justify-between font-bold mb-4">
+              <span>Total</span>
+              <span>$31.99</span>
+            </div>
+            <button class="bg-green-500 text-white px-4 py-2 rounded w-full hover:bg-green-600">
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

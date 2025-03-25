@@ -1,0 +1,126 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Testimonials - Golmart Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/css/home.css" rel="stylesheet" />
+  </head>
+  <body class="bg-[#fef4e9] text-black p-6">
+    <!-- Decorative Background Images -->
+    <div class="background-images">
+      <img src="/images/leaf.png" class="decorative-img leaf1" />
+      <img src="/images/leaf_1.png" class="decorative-img leaf2" />
+      <img src="/images/leaf_2.png" class="decorative-img leaf3" />
+      <img src="/images/clover.png" class="decorative-img clover" />
+      <img src="/images/leaf-fall.png" class="decorative-img leaf-fall" />
+      <img src="/images/maple-leaf.png" class="decorative-img maple-leaf" />
+    </div>
+
+    <!-- Main Layout Container -->
+    <div class="flex flex-col md:flex-row min-h-screen">
+      <!-- Sidebar -->
+      <div class="bg-[#fef4e9] p-6 md:w-[15%] flex flex-col items-start">
+        <!-- Logo -->
+        <div class="flex items-center mb-8">
+          <i class="fas fa-seedling text-7xl mr-2"></i>
+          <div class="flex flex-col">
+            <span class="text-3xl font-bold">GOLMART</span>
+            <span class="text-3xl font-bold">STORE</span>
+          </div>
+        </div>
+        <!-- Navigation -->
+        <nav class="flex flex-col space-y-4 w-full">
+          <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/">HOME</a>
+          <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/cart.html">CART</a>
+          <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/contact.html">CONTACT</a>
+          <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/catalog.html">CATALOG</a>
+          <a class="text-xl font-bold bg-[#d0e4a4] p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/testimonials.html">TESTIMONIALS</a>
+        </nav>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="flex-1 p-6">
+        <!-- Search Bar -->
+        <div class="flex justify-end items-center mb-8">
+            <form action="search.html" method="get" class="relative">
+              <input
+                name="q"
+                class="bg-[#f8d4ac] border border-gray-300 rounded-full py-2 px-4 pl-10"
+                style="width: 320px;"
+                placeholder=""
+                type="text"
+                aria-label="Search"
+              />
+              <button
+                type="submit"
+                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 bg-transparent border-none p-0"
+                aria-label="Search"
+              >
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+            <a
+              href="/login.html"
+              id="login-button"
+              class="ml-4 bg-red-800 text-white font-bold py-2 px-4 rounded-full mb-4"
+            >
+              Login
+            </a>
+            <a
+              href="/profile.html"
+              id="user-button"
+              class="ml-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-full mb-4 hidden"
+            >
+              <i class="fas fa-user"></i> <span id="user-name">Full name</span>
+            </a>
+          </div>
+
+        <!-- Testimonials Content -->
+        <div class="mb-8 px-10 pr-16">
+          <!-- Heading -->
+          <div class="text-right w-full mb-8">
+            <h1 class="text-8xl leading-tight fictional-friend">What Our Customers Say</h1>
+          </div>
+
+          <!-- Testimonials Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Testimonial 1 -->
+            <div class="bg-[#ffdfba] p-4 rounded-lg shadow-lg">
+              <img src="/images/testimonials/jane_doe.webp" alt="Jane Doe" class="w-60 h-60 rounded-full object-cover mb-4 block mx-auto">
+              <p class="font-bold mt-2 mb-2">- Jane Doe</p>
+              <p class="italic text-gray-700">"I love shopping at Golmart Store! The products are always fresh and the service is excellent."</p>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="bg-[#ffdfba] p-4 rounded-lg shadow-lg">
+              <img src="/images/testimonials/john_smith.webp" alt="John Smith" class="w-60 h-60 rounded-full object-cover mb-4 block mx-auto">
+              <p class="font-bold mt-2 mb-2">- John Smith</p>
+              <p class="italic text-gray-700">"Best store in town! Highly recommend."</p>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="bg-[#ffdfba] p-4 rounded-lg shadow-lg">
+              <img src="/images/testimonials/alice_johnson.webp" alt="Alice Johnson" class="w-60 h-60 rounded-full object-cover mb-4 block mx-auto">
+              <p class="font-bold mt-2 mb-2">- Alice Johnson</p>
+              <p class="italic text-gray-700">"Great variety and quality products. Will definitely shop again."</p>
+            </div>
+          </div>
+
+          <!-- Call to Action -->
+          <div class="text-center mt-8">
+            <p class="text-xl">We value your feedback. Share your experience with us!</p>
+            <br>
+            <a href="/contact.html" class="bg-green-200 text-black font-bold py-2 px-6 rounded-lg mt-8">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

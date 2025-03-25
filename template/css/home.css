@@ -1,0 +1,67 @@
+body {
+font-family: Arial, Helvetica, sans-serif;
+}
+.fictional-friend {
+font-family: "Fictional Friend", cursive;
+}
+.background-images {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1; /* Places decorative images behind content */
+}
+.decorative-img {
+position: absolute;
+width: 8vw;
+height: auto;
+opacity: 0.8;
+}
+.leaf1 {
+top: 88%;
+left: 40%;
+transform: rotate(10deg);
+}
+.leaf2 {
+top: 30%;
+left: 92%;
+transform: rotate(-5deg);
+}
+.leaf3 {
+bottom: 60%;
+left: 15%;
+transform: rotate(20deg);
+}
+.clover {
+top: 0%;
+right: 70%;
+transform: rotate(15deg);
+}
+.leaf-fall {
+top: -6%;
+right: 30%;
+transform: rotate(-10deg);
+}
+.maple-leaf {
+bottom: 6%;
+right: 30%;
+transform: rotate(5deg);
+}
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+.leaf1 {
+    top: 95%; /* Adjusted to avoid text overlap */
+    left: 5%;
+}
+.leaf2 {
+    top: 10%; /* Moved higher */
+    left: 5%;
+}
+.leaf3 {
+    display: none; /* Hidden on mobile */
+}
+.clover {
+    display: none; /* Hidden on mobile */
+}
+}

@@ -1,0 +1,170 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Search - Golmart Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <link 
+      href="/css/home.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#fef4e9] text-black p-6">
+    <!-- Background Decorative Images -->
+    <div class="background-images">
+      <img src="/images/leaf.png" class="decorative-img leaf1" />
+      <img src="/images/leaf_1.png" class="decorative-img leaf2" />
+      <img src="/images/leaf_2.png" class="decorative-img leaf3" />
+      <img src="/images/clover.png" class="decorative-img clover" />
+      <img src="/images/leaf-fall.png" class="decorative-img leaf-fall" />
+      <img src="/images/maple-leaf.png" class="decorative-img maple-leaf" />
+    </div>
+    <div class="flex flex-col md:flex-row min-h-screen">
+      <!-- Sidebar -->
+      <div class="bg-[#fef4e9] p-6 md:w-[15%] flex flex-col items-start">
+        <div class="flex items-center mb-8">
+          <i class="fas fa-seedling text-7xl mr-2"></i>
+          <div class="flex flex-col">
+            <span class="text-3xl font-bold">GOLMART</span>
+            <span class="text-3xl font-bold">STORE</span>
+          </div>
+        </div>
+        <nav class="flex flex-col space-y-4 w-full">
+          <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/">HOME</a>
+          <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/cart.html">CART</a>
+          <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/contact.html">CONTACT</a>
+          <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/catalog.html">CATALOG</a>
+          <a class="text-xl font-bold p-2 pl-6 rounded hover:bg-[#d0e4a4]" href="/testimonials.html">TESTIMONIALS</a>
+        </nav>
+      </div>
+      <!-- Main Content -->
+      <div class="flex-1 p-6">
+        <!-- Header with Search Form and Buttons -->
+        <div class="flex justify-end items-center mb-8">
+            <form action="search.html" method="get" class="relative">
+              <input
+                name="q"
+                class="bg-[#f8d4ac] border border-gray-300 rounded-full py-2 px-4 pl-10"
+                style="width: 320px;"
+                placeholder=""
+                type="text"
+                aria-label="Search"
+              />
+              <button
+                type="submit"
+                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 bg-transparent border-none p-0"
+                aria-label="Search"
+              >
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+            <a
+              href="/login.html"
+              id="login-button"
+              class="ml-4 bg-red-800 text-white font-bold py-2 px-4 rounded-full mb-4"
+            >
+              Login
+            </a>
+            <a
+              href="/profile.html"
+              id="user-button"
+              class="ml-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-full mb-4 hidden"
+            >
+              <i class="fas fa-user"></i> <span id="user-name">Full name</span>
+            </a>
+          </div>
+        <!-- Search Results Section -->
+        <div class="w-full mb-8 px-10" id="search-results">
+          <h1 class="text-4xl font-bold mb-4" id="search-heading">
+            <span id="search-prefix">Search Results for '</span><span id="search-query"></span><span id="search-suffix">'</span>
+          </h1>
+          <p id="search-message" class="text-center text-gray-500 mb-8">
+            Please use the search box above to find products.
+          </p>
+          <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="/product.html?id=1" class="block">
+              <div class="bg-[#fcebd9] p-4 rounded-lg shadow-lg border-black border-4">
+                <div class="w-full h-48 bg-gray-300 mb-2"></div>
+                <h3 class="text-lg font-bold">Product 1</h3>
+                <p class="text-gray-600">$19.99</p>
+              </div>
+            </a>
+            <a href="/product.html?id=2" class="block">
+              <div class="bg-[#fcebd9] p-4 rounded-lg shadow-lg border-black border-4">
+                <div class="w-full h-48 bg-gray-300 mb-2"></div>
+                <h3 class="text-lg font-bold">Product 2</h3>
+                <p class="text-gray-600">$29.99</p>
+              </div>
+            </a>
+            <a href="/product.html?id=3" class="block">
+              <div class="bg-[#fcebd9] p-4 rounded-lg shadow-lg border-black border-4">
+                <div class="w-full h-48 bg-gray-300 mb-2"></div>
+                <h3 class="text-lg font-bold">Product 3</h3>
+                <p class="text-gray-600">$24.99</p>
+              </div>
+            </a>
+            <a href="/product.html?id=4" class="block">
+              <div class="bg-[#fcebd9] p-4 rounded-lg shadow-lg border-black border-4">
+                <div class="w-full h-48 bg-gray-300 mb-2"></div>
+                <h3 class="text-lg font-bold">Product 4</h3>
+                <p class="text-gray-600">$14.99</p>
+              </div>
+            </a>
+            <a href="/product.html?id=5" class="block">
+              <div class="bg-[#fcebd9] p-4 rounded-lg shadow-lg border-black border-4">
+                <div class="w-full h-48 bg-gray-300 mb-2"></div>
+                <h3 class="text-lg font-bold">Product 5</h3>
+                <p class="text-gray-600">$39.99</p>
+              </div>
+            </a>
+            <a href="/product.html?id=6" class="block">
+              <div class="bg-[#fcebd9] p-4 rounded-lg shadow-lg border-black border-4">
+                <div class="w-full h-48 bg-gray-300 mb-2"></div>
+                <h3 class="text-lg font-bold">Product 6</h3>
+                <p class="text-gray-600">$9.99</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- JavaScript for Dynamic Search Query Handling -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('q');
+        const searchPrefix = document.getElementById('search-prefix');
+        const searchQuerySpan = document.getElementById('search-query');
+        const searchSuffix = document.getElementById('search-suffix');
+        const searchMessage = document.getElementById('search-message');
+        const productGrid = document.getElementById('product-grid');
+
+        if (query) {
+          searchPrefix.textContent = "Search Results for '";
+          searchQuerySpan.textContent = query;
+          searchSuffix.textContent = "'";
+          searchMessage.style.display = 'none';
+          productGrid.style.display = 'grid';
+        } else {
+          searchPrefix.textContent = "";
+          searchQuerySpan.textContent = "Search";
+          searchSuffix.textContent = "";
+          searchMessage.textContent = 'Please use the search box above to find products.';
+          searchMessage.style.display = 'block';
+          productGrid.style.display = 'none';
+        }
+
+        // Populate the search input with the query
+        document.querySelector('input[name="q"]').value = query || '';
+      });
+    </script>
+  </body>
+</html>
