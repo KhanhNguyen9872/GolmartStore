@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org/layout" layout:decorate="~{admin/layout/layout}">
+<head>
+  <title th:text="${product.id == null} ? 'Add Product' : 'Edit Product'">Product Form</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800" th:text="${product.id == null} ? 'Add New Product' : 'Edit Product'">Product Form</h1>
+  </div>
+
+  <!-- Product Form -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary" th:text="${product.id == null} ? 'New Product' : 'Update Product'">Product Details</h6>
+    </div>
+    <div class="card-body">
+      <form th:action="@{/admin/products}" method="post" th:object="${product}">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" th:field="*{name}" required />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" th:field="*{description}"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="number" step="0.01" class="form-control" id="price" th:field="*{price}" required />
+        </div>
+
+        <div class="form-group">
+          <label for="details">Details</label>
+          <textarea class="form-control" id="details" th:field="*{details}"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="moreAbout">More About</label>
+          <textarea class="form-control" id="moreAbout" th:field="*{moreAbout}"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="image">Image URL</label>
+          <input type="text" class="form-control" id="image" th:field="*{image}" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a th:href="@{/admin/products}" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

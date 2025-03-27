@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org/layout" layout:decorate="~{admin/layout/layout}">
+<head>
+    <title>Products</title>
+    <style>
+        .product-image {
+            width: 50px; /* Adjust this size as needed */
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Products</h1>
+        <a th:href="@{/admin/products/new}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Add New Product
+        </a>
+    </div>
+
+    <!-- Product List Table -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Product List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Image</th> <!-- New Image column added here -->
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.id}"></td>
+                        <td>
+                            <img th:if="${product.image != null and product.image != ''}"
+                                 th:src="${product.image}"
+                                 class="product-image"
+                                 alt="Product Image" />
+                            <span th:if="${product.image == null or product.image == ''}">No Image</span>
+                        </td>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td>
+                            <a th:href="@{/admin/products/{id}/edit(id=${product.id})}" class="btn btn-sm btn-primary">Edit</a>
+                            <form th:action="@{/admin/products/{id}/delete(id=${product.id})}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
