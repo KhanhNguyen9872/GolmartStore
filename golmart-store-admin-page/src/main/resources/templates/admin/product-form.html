@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org/layout" layout:decorate="~{admin/layout/layout}">
+<head>
+  <title th:text="${product.id == null} ? 'Add Product' : 'Edit Product'">Product Form</title>
+  <style>
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+<div layout:fragment="main-content">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800" th:text="${product.id == null} ? 'Add New Product' : 'Edit Product'">Product Form</h1>
+  </div>
+
+  <!-- Product Form -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary" th:text="${product.id == null} ? 'New Product' : 'Update Product'">Product Details</h6>
+    </div>
+    <div class="card-body">
+      <!-- Display general error message if present -->
+      <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
+      <form th:action="@{/admin-panel/products}" method="post" th:object="${product}" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" th:field="*{name}" />
+          <span class="error" th:errors="*{name}"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" th:field="*{description}"></textarea>
+          <span class="error" th:errors="*{description}"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="number" step="0.01" class="form-control" id="price" th:field="*{price}" />
+          <span class="error" th:errors="*{price}"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="details">Details</label>
+          <textarea class="form-control" id="details" th:field="*{details}"></textarea>
+          <span class="error" th:errors="*{details}"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="moreAbout">More About</label>
+          <textarea class="form-control" id="moreAbout" th:field="*{moreAbout}"></textarea>
+          <span class="error" th:errors="*{moreAbout}"></span>
+        </div>
+
+        <div class="form-group">
+          <!-- Image Preview and Upload -->
+          <div>
+            <label>Current Image:</label>
+            <img th:src="${product.image != null ? product.image : '/images/default-product.png'}"
+                 alt="Product Image" class="preview-image" />
+          </div>
+          <div>
+            <label for="imageFile">Upload New Image:</label>
+            <input type="file" name="imageFile" id="imageFile" accept="image/*" />
+            <span class="error" th:errors="*{image}"></span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a th:href="@{/admin-panel/products}" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
