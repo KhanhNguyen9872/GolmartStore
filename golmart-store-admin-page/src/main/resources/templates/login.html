@@ -30,7 +30,7 @@
                     <div th:if="${param.logout}" class="alert alert-success">
                         Bạn đã đăng xuất thành công!
                     </div>
-                    <form th:action="@{/authenticateTheUser}" method="post">
+                    <form th:action="@{/admin-panel/authenticateTheUser}" method="post">
                         <!-- CSRF token for Spring Security -->
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                         <div class="mb-3">

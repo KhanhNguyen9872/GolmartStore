@@ -1,5 +1,5 @@
 // src/components/Signup.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { register } from '../api'; // Adjust path if needed
 
@@ -12,6 +12,14 @@ function Signup() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // Check if the user is already logged in and redirect to '/' if so
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/');
+    }
+  }, [navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -20,8 +28,11 @@ function Signup() {
     }
     try {
       const userData = await register(username, password, fullName, email);
+      if (userData) {
+        navigate('/login');
+      } 
       // On success, redirect to login
-      navigate('/login');
+      
     } catch (err) {
       setError(err.message);
     }

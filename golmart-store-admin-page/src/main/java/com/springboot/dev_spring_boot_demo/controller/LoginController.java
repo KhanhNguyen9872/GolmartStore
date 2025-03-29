@@ -7,17 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping ("/")
 public class LoginController {
-    @GetMapping("/")
-    public String index() {
-        return "redirect:/admin-panel";
-    }
-
-    @GetMapping("/login")
+    @GetMapping("/admin-panel/login")
     public String login() {
         return "login";
     }
 
-    @GetMapping("/accessDenied")
+    @GetMapping("/admin-panel/accessDenied")
     public String accessDenied() {
         return "accessDenied";
     }

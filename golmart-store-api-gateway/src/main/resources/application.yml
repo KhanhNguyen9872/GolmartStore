@@ -1,0 +1,37 @@
+server:
+  port: 80
+spring:
+  application:
+    name: golmart-store-api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: admin-page
+          uri: lb://GOLMART-STORE-ADMIN-PAGE
+          predicates:
+            - Path=/admin-panel/**
+        - id: api
+          uri: lb://GOLMART-STORE-API
+          predicates:
+            - Path=/api/**
+        - id: react-app
+          uri: http://127.0.0.1:3000
+          predicates:
+            - Path=/**
+          filters:
+            - RewritePath=/react/(?<segment>.*), /${segment}
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://127.0.0.1:3000"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true

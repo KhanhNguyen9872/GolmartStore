@@ -1,7 +1,7 @@
 // src/api.js
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8889';
+const API_URL = '';
 
 // Login API call
 export const login = async (username, password) => {
@@ -83,7 +83,7 @@ export const getProducts = async () => {
       // Map over the array to create a new array with updated image fields
       const products = response.data.map(product => ({
         ...product, // Spread all existing fields of the product
-        image: API_URL + product.image // Prepend API_URL to the image field
+        image: API_URL + '/api/' + product.image // Prepend API_URL to the image field
       }));
   
       return products; // Return the modified array
@@ -97,7 +97,7 @@ export const getProductById = async (id) => {
     try {
       const response = await axios.get(`${API_URL}/api/products/${id}`);
       if (response.data) {
-        response.data.image = API_URL + response.data.image; // Prepend API_URL to the image field
+        response.data.image = API_URL + '/api/' + response.data.image; // Prepend API_URL to the image field
       }
       return response.data; // Returns the product object
     } catch (error) {
@@ -114,7 +114,7 @@ export const getProductById = async (id) => {
        // Map over the array to create a new array with updated image fields
        const products = response.data.map(product => ({
         ...product, // Spread all existing fields of the product
-        image: API_URL + product.image // Prepend API_URL to the image field
+        image: API_URL + '/api/' + product.image // Prepend API_URL to the image field
       }));
       return products; // Expecting an array of products from the API
     } catch (error) {

@@ -10,7 +10,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // Map URL /img/** to the local directory ./img/
-        registry.addResourceHandler("/img/**")
+        registry.addResourceHandler("/api/img/**")
                 .addResourceLocations("file:./img/");
     }
 }

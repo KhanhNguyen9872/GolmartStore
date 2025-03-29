@@ -37,25 +37,24 @@ public class SecurityConfig {
                                 .requestMatchers("/admin-panel/admins/**").hasRole("SYSTEM")    // Restrict /admin-panel/admins and subpaths to ROLE_SYSTEM
                                 .requestMatchers("/admin-panel/users/**").hasRole("ADMIN")     // Restrict /admin-panel/users and subpaths to ROLE_ADMIN
                                 .requestMatchers("/admin-panel/**").authenticated()            // Allow all authenticated users to /admin-panel and subpaths
-                                .requestMatchers("/admin/**").hasRole("ADMIN")                 // Restrict other /admin paths to ROLE_ADMIN
-                                .requestMatchers("/login", "/logout").permitAll()              // Allow public access to login and logout
+                                .requestMatchers("/admin-panel/login", "/admin-panel/logout").permitAll()              // Allow public access to login and logout
                                 .anyRequest().authenticated()                                  // All other requests require authentication
                 )
                 .formLogin(form ->
                         form
-                                .loginPage("/login")
-                                .loginProcessingUrl("/authenticateTheUser")
+                                .loginPage("/admin-panel/login")
+                                .loginProcessingUrl("/admin-panel/authenticateTheUser")
                                 .defaultSuccessUrl("/admin-panel", true)
                                 .permitAll()
                 )
                 .logout(logout ->
                         logout
-                                .logoutUrl("/logout").logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-                                .logoutSuccessUrl("/login?logout")
+                                .logoutUrl("/admin-panel/logout").logoutRequestMatcher(new AntPathRequestMatcher("/admin-panel/logout", "GET"))
+                                .logoutSuccessUrl("/admin-panel/login?logout")
                                 .permitAll()
                 )
                 .exceptionHandling(configurer ->
-                        configurer.accessDeniedPage("/accessDenied")
+                        configurer.accessDeniedPage("/admin-panel/accessDenied")
                 )
                 .userDetailsService(username -> {
                     try {

@@ -1,6 +1,6 @@
 // src/components/ForgotPassword.js
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { forgotPassword } from '../api'; // Adjust path if needed
 
 function ForgotPassword() {
@@ -8,12 +8,21 @@ function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  // Check if the user is logged in and redirect to home page if so
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/');
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await forgotPassword(username, email);
-      setMessage(response.message); // "Your new password is: 54U03TbgH4Be"
+      setMessage(response.message); // e.g., "Your new password is: 54U03TbgH4Be"
       setError('');
     } catch (err) {
       setError(err.message);
