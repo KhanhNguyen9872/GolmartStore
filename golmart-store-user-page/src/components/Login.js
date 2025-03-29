@@ -34,7 +34,7 @@ function Login() {
       localStorage.setItem('fullName', fullName);
 
       // Redirect to profile
-      navigate('/profile');
+      navigate('/');
     } catch (err) {
       setError(err.message);
     }

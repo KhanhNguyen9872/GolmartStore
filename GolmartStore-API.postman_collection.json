@@ -244,6 +244,49 @@
 			"response": []
 		},
 		{
+			"name": "Update from cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb2huZG9lIiwiZXhwIjoxNzQzMjM3ODQ3fQ.ZVcOU7A_16_kxVNvaT8RDWgWKqtYYkfpmOBEi0ndbsIPQHjRJc48vAkDDZCoNO3mfPiN2Hf89fzZNb4BOlWppQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"quantity\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8889/api/cart/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8889",
+					"path": [
+						"api",
+						"cart",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Remove from cart",
 			"request": {
 				"auth": {

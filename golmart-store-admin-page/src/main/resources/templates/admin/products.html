@@ -41,7 +41,7 @@
                     <tr th:each="product : ${products}">
                         <td th:text="${product.id}"></td>
                         <td>
-                            <img th:src="${product.image != null ? product.image : '/images/default-product.png'}"
+                            <img th:src="${product.image != null ? '/admin-panel/' + product.image : '/admin-panel/images/default-product.png'}"
                                  class="product-image" alt="Product Image" />
                         </td>
                         <td th:text="${product.name}"></td>

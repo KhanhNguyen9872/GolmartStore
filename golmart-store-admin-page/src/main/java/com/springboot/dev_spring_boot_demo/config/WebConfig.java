@@ -18,7 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/profile_pictures/**")
                 .addResourceLocations("file:./profile_pictures/");
 
-        registry.addResourceHandler("/img/**")
+        registry.addResourceHandler("/admin-panel/img/**")
                 .addResourceLocations("file:" + uploadDir + "/");
     }
 }
