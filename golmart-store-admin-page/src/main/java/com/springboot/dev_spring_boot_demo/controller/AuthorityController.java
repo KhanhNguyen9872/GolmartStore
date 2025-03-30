@@ -60,45 +60,51 @@ public class AuthorityController {
 
     @PostMapping("/authorities")
     public String saveAdmin(@ModelAttribute("admin") Admin admin,
-                            @RequestParam(value = "roles") List<String> roles,
+                            @RequestParam(value = "roles", required = false) List<String> roles,
                             Model model,
-                            BindingResult bindingResult,
                             @AuthenticationPrincipal Admin admin1) {
-        if (admin.getId() != null) {
+        model.addAttribute("errorMessage", "");
+        try {
             // Kiểm tra nếu không có quyền nào được chọn
             if (roles == null || roles.isEmpty()) {
-                bindingResult.reject("error.roles", "Please select at least one role.");
                 model.addAttribute("fullName", admin1.getFullName());
                 model.addAttribute("admin", admin);
                 model.addAttribute("allRoles", ALL_ROLES);
                 model.addAttribute("selectedRoles", Collections.emptyList());
+                model.addAttribute("errorMessage", "You must select at least one role");
                 return "system/authority-form";
             }
 
-            Admin existingAdmin = adminService.findById(admin.getId());
-            if (existingAdmin == null) {
-                return "redirect:/system/authorities?error=AdminNotFound";
-            }
-            admin.setUsername(existingAdmin.getUsername());
-            if (admin.getPassword() == null || admin.getPassword().isEmpty()) {
-                admin.setPassword(existingAdmin.getPassword());
+            if (admin.getId() != null) {
+                Admin existingAdmin = adminService.findById(admin.getId());
+                if (existingAdmin == null) {
+                    return "redirect:/system/authorities?error=AdminNotFound";
+                }
+                admin.setUsername(existingAdmin.getUsername());
+                if (admin.getPassword() == null || admin.getPassword().isEmpty()) {
+                    admin.setPassword(existingAdmin.getPassword());
+                } else {
+                    admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+                }
             } else {
                 admin.setPassword(passwordEncoder.encode(admin.getPassword()));
             }
-        } else {
-            admin.setPassword(passwordEncoder.encode(admin.getPassword()));
-        }
-        Admin savedAdmin = adminService.save(admin);
+            Admin savedAdmin = adminService.save(admin);
 
-        // Cập nhật quyền hạn
-        adminService.deleteAuthoritiesByUsername(savedAdmin.getUsername());
-        for (String role : roles) {
-            Authority authority = new Authority();
-            authority.setAdmin(savedAdmin);
-            authority.setAuthority(role);
-            adminService.saveAuthority(authority);
+            // Cập nhật quyền hạn
+            adminService.deleteAuthoritiesByUsername(savedAdmin.getUsername());
+            for (String role : roles) {
+                Authority authority = new Authority();
+                authority.setAdmin(savedAdmin);
+                authority.setAuthority(role);
+                adminService.saveAuthority(authority);
+            }
+            return "redirect:/system/authorities";
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new RuntimeException(e);
         }
-        return "redirect:/system/authorities";
+
     }
 
 }
