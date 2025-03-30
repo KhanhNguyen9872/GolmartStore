@@ -9,6 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -59,28 +60,37 @@ public class AuthorityController {
 
     @PostMapping("/authorities")
     public String saveAdmin(@ModelAttribute("admin") Admin admin,
-                            @RequestParam("roles") List<String> roles) {
+                            @RequestParam(value = "roles") List<String> roles,
+                            Model model,
+                            BindingResult bindingResult,
+                            @AuthenticationPrincipal Admin admin1) {
         if (admin.getId() != null) {
+            // Kiểm tra nếu không có quyền nào được chọn
+            if (roles == null || roles.isEmpty()) {
+                bindingResult.reject("error.roles", "Please select at least one role.");
+                model.addAttribute("fullName", admin1.getFullName());
+                model.addAttribute("admin", admin);
+                model.addAttribute("allRoles", ALL_ROLES);
+                model.addAttribute("selectedRoles", Collections.emptyList());
+                return "system/authority-form";
+            }
+
             Admin existingAdmin = adminService.findById(admin.getId());
             if (existingAdmin == null) {
-                // Handle case where admin is not found, e.g., return an error page
                 return "redirect:/system/authorities?error=AdminNotFound";
             }
-            // Preserve the existing username
             admin.setUsername(existingAdmin.getUsername());
-            // Preserve password if not updated
             if (admin.getPassword() == null || admin.getPassword().isEmpty()) {
                 admin.setPassword(existingAdmin.getPassword());
             } else {
                 admin.setPassword(passwordEncoder.encode(admin.getPassword()));
             }
         } else {
-            // New admin, encode the password
             admin.setPassword(passwordEncoder.encode(admin.getPassword()));
         }
         Admin savedAdmin = adminService.save(admin);
 
-        // Update authorities
+        // Cập nhật quyền hạn
         adminService.deleteAuthoritiesByUsername(savedAdmin.getUsername());
         for (String role : roles) {
             Authority authority = new Authority();
@@ -90,4 +100,5 @@ public class AuthorityController {
         }
         return "redirect:/system/authorities";
     }
+
 }

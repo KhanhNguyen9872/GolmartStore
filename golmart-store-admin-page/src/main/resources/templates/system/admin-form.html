@@ -11,13 +11,14 @@
         <input type="hidden" th:field="*{id}" />
 
         <!-- Full Name -->
-        <div class="form-group mb-3">
+        <div class="form-group mb-3" th:classappend="${#fields.hasErrors('fullName')} ? 'has-error'">
             <label for="fullName">Full Name</label>
             <input type="text" class="form-control" id="fullName" th:field="*{fullName}" />
+            <div class="text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
         </div>
 
         <!-- Username -->
-        <div class="form-group mb-3">
+        <div class="form-group mb-3" th:classappend="${#fields.hasErrors('username')} ? 'has-error'">
             <label for="username">Username</label>
             <th:block th:if="${admin.id == null}">
                 <input type="text" class="form-control" id="username" th:field="*{username}" />
@@ -25,24 +26,28 @@
             <th:block th:unless="${admin.id == null}">
                 <input type="text" class="form-control" id="username" th:field="*{username}" readonly />
             </th:block>
+            <div class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
         </div>
 
         <!-- Email -->
-        <div class="form-group mb-3">
+        <div class="form-group mb-3" th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email" th:field="*{email}" />
+            <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
         </div>
 
         <!-- Password -->
-        <div class="form-group mb-3">
+        <div class="form-group mb-3" th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" th:field="*{password}" />
+            <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </div>
 
         <!-- Enabled Checkbox -->
-        <div class="form-group mb-3">
+        <div class="form-group mb-3" th:classappend="${#fields.hasErrors('enabled')} ? 'has-error'">
             <label for="enabled">Enabled</label>
             <input type="checkbox" id="enabled" th:field="*{enabled}" />
+            <div class="text-danger" th:if="${#fields.hasErrors('enabled')}" th:errors="*{enabled}"></div>
         </div>
 
         <!-- Submit Button -->

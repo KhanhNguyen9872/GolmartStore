@@ -8,6 +8,7 @@
 <div layout:fragment="main-content">
     <h2 th:text="${admin.id != null} ? 'Edit Authority' : 'New Authority'"></h2>
     <form th:action="@{/system/authorities}" th:object="${admin}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <input type="hidden" th:field="*{id}" />
         <input type="text" class="form-control" id="fullName" th:field="*{fullName}" hidden />
         <input type="text" class="form-control" id="username" th:field="*{username}" hidden />
@@ -23,6 +24,10 @@
                        th:checked="${selectedRoles.contains(role)}" />
                 <label th:text="${role}"></label>
             </div>
+            <div th:if="${#fields.hasGlobalErrors()}" th:each="err : ${#fields.globalErrors()}" class="alert alert-danger">
+                <p class="text-danger" style="font-size: 22px;" th:text="${err}"></p>
+            </div>
+
         </div>
 
         <!-- Submit Button -->

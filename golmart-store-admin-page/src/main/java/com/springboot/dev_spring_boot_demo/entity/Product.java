@@ -1,8 +1,10 @@
 package com.springboot.dev_spring_boot_demo.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
@@ -23,6 +25,7 @@ public class Product {
     private String description;
 
     @NotNull(message = "Price is required")
+    @DecimalMin(value = "0", inclusive = true, message = "Price must not lower than 0")
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 

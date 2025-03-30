@@ -8,6 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -63,11 +64,16 @@ public class SystemController {
     }
 
     @PostMapping("/admins")
-    public String saveAdmin(@ModelAttribute("admin") Admin admin) {
+    public String saveAdmin(@ModelAttribute("admin") Admin admin, BindingResult bindingResult) {
         if (admin.getId() != null) {
+            if (bindingResult.hasErrors()) {
+                return "system/admins";
+            }
+            // Update existing admin
             Admin existingAdmin = adminService.findById(admin.getId());
             if (existingAdmin == null) {
-                return "redirect:/system/admins?error=AdminNotFound";
+                bindingResult.rejectValue("username", "error.user", "Something went wrong");
+                return "system/admin-form";
             }
             admin.setUsername(existingAdmin.getUsername());
             if (admin.getPassword() == null || admin.getPassword().isEmpty()) {
@@ -76,9 +82,17 @@ public class SystemController {
                 admin.setPassword(passwordEncoder.encode(admin.getPassword()));
             }
         } else {
+            // Check for duplicate username
+            Admin existingAdmin = adminService.findByUsername(admin.getUsername());
+            if (existingAdmin != null) {
+                bindingResult.rejectValue("username", "error.user", "Username is already taken");
+                return "system/admin-form";
+            }
             admin.setPassword(passwordEncoder.encode(admin.getPassword()));
         }
+
         adminService.save(admin);
         return "redirect:/system/admins";
     }
+
 }

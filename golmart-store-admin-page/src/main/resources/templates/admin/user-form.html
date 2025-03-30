@@ -22,21 +22,25 @@
         <div class="form-group">
           <label for="fullName">Full Name</label>
           <input type="text" class="form-control" id="fullName" th:field="*{fullName}" />
+          <div th:if="${#fields.hasErrors('fullName')}" class="text-danger" th:errors="*{fullName}"></div>
         </div>
 
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" class="form-control" id="username" th:field="*{username}" />
+          <div th:if="${#fields.hasErrors('username')}" class="text-danger" th:errors="*{username}"></div>
         </div>
 
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" class="form-control" id="password" th:field="*{password}" />
+          <div th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}"></div>
         </div>
 
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" class="form-control" id="email" th:field="*{email}" />
+          <div th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></div>
         </div>
 
         <div class="form-group">
@@ -45,6 +49,7 @@
             <option value="1">Active</option>
             <option value="0">Inactive</option>
           </select>
+          <div th:if="${#fields.hasErrors('enabled')}" class="text-danger" th:errors="*{enabled}"></div>
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>

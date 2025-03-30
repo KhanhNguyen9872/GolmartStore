@@ -18,7 +18,7 @@ function Product() {
         setProduct(data);
         setLoading(false);
       } catch (err) {
-        setError(err.message);
+        setError('PRODUCT NOT FOUND');
         setLoading(false);
       }
     };

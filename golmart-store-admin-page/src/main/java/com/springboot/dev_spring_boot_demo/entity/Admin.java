@@ -96,9 +96,17 @@ public class Admin implements UserDetails {
         this.authorities = authorities;
     }
 
+    public void setRoles(List<Authority> authorities) { this.authorities = authorities; }
+
     // Implement UserDetails methods
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities.stream()
+                .map(authority -> (GrantedAuthority) () -> authority.getAuthority())
+                .toList();
+    }
+
+    public Collection<? extends GrantedAuthority> getRoles() {
         return authorities.stream()
                 .map(authority -> (GrantedAuthority) () -> authority.getAuthority())
                 .toList();
