@@ -12,12 +12,12 @@ spring:
         - id: admin-page
           uri: lb://GOLMART-STORE-ADMIN-PAGE
           predicates:
-            - Path=/admin-panel/**
+            - Path=/admin/**, /system/**
         - id: api
           uri: lb://GOLMART-STORE-API
           predicates:
             - Path=/api/**
-        - id: react-app
+        - id: user-page
           uri: http://127.0.0.1:3000
           predicates:
             - Path=/**
