@@ -45,16 +45,6 @@
             <input type="checkbox" id="enabled" th:field="*{enabled}" />
         </div>
 
-        <!-- Roles Selection with Multiple Checkboxes -->
-        <div class="form-group mb-3">
-            <label>Roles</label>
-            <div th:each="role : ${allRoles}">
-                <input type="checkbox" name="roles" th:value="${role}"
-                       th:checked="${selectedRoles.contains(role)}" />
-                <label th:text="${role}"></label>
-            </div>
-        </div>
-
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">Save</button>
         <a th:href="@{/system/admins}" class="btn btn-secondary">Cancel</a>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org/layout" layout:decorate="~{system/layout/layout}">
+<head>
+    <title>Authority Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="main-content">
+    <h2 th:text="${admin.id != null} ? 'Edit Authority' : 'New Authority'"></h2>
+    <form th:action="@{/system/authorities}" th:object="${admin}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <input type="text" class="form-control" id="fullName" th:field="*{fullName}" hidden />
+        <input type="text" class="form-control" id="username" th:field="*{username}" hidden />
+        <input type="email" class="form-control" id="email" th:field="*{email}" hidden />
+        <input type="password" class="form-control" id="password" th:field="*{password}" hidden />
+        <input type="checkbox" id="enabled" th:field="*{enabled}" hidden />
+
+        <!-- Roles Selection with Multiple Checkboxes -->
+        <div class="form-group mb-3">
+            <label>Roles</label>
+            <div th:each="role : ${allRoles}">
+                <input type="checkbox" name="roles" th:value="${role}"
+                       th:checked="${selectedRoles.contains(role)}" />
+                <label th:text="${role}"></label>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a th:href="@{/system/authorities}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

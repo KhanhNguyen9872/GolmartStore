@@ -17,14 +17,14 @@ public class CustomErrorController implements ErrorController {
         if (status != null) {
             int statusCode = Integer.parseInt(status.toString());
 
-            // Check if the error code is 404 (Not Found)
-            if (statusCode == 404) {
-                return "redirect:/admin/accessDenied";
-            }
-
-            if (statusCode == 500) {
-                return "redirect:/admin/accessDenied";
-            }
+//            // Check if the error code is 404 (Not Found)
+//            if (statusCode == 404) {
+//                return "redirect:/admin/accessDenied";
+//            }
+//
+//            if (statusCode == 500) {
+//                return "redirect:/admin/accessDenied";
+//            }
         }
 
         // Return the default error page for other errors

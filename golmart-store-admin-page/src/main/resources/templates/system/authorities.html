@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org/layout" layout:decorate="~{system/layout/layout}">
 <head>
-    <title>Admins</title>
+    <title>Authority</title>
 </head>
 <body>
 <div layout:fragment="main-content">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Admins</h1>
-        <a th:href="@{/system/admins/new}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Add New Admin
-        </a>
+        <h1 class="h3 mb-0 text-gray-800">Authority</h1>
     </div>
 
-    <!-- Admin List Table -->
+    <!-- Authority List Table -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Admin List</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Authority List</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -24,25 +21,20 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Full Name</th>
                         <th>Username</th>
-                        <th>Email</th>
-                        <th>Status</th>
+                        <th>Roles</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="admin : ${admins}">
                         <td th:text="${admin.id}"></td>
-                        <td th:text="${admin.fullName}"></td>
                         <td th:text="${admin.username}"></td>
-                        <td th:text="${admin.email}"></td>
-                        <td th:text="${admin.enabled} ? 'Active' : 'Inactive'"></td>
                         <td>
-                            <a th:href="@{/system/admins/{id}/edit(id=${admin.id})}" class="btn btn-sm btn-primary">Edit</a>
-                            <form th:action="@{/system/admins/{id}/delete(id=${admin.id})}" method="post" style="display:inline;">
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                            </form>
+                            <span th:each="role : ${adminRolesMap.get(admin)}" th:text="${role} + ' '"></span>
+                        </td>
+                        <td>
+                            <a th:href="@{/system/authorities/{id}/edit(id=${admin.id})}" class="btn btn-sm btn-primary">Edit</a>
                         </td>
                     </tr>
                     </tbody>
