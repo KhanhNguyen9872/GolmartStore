@@ -43,6 +43,7 @@ function App() {
               <Route path="/product/:id" element={<Product />} />
               <Route path="/search" element={<Search />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="*" element={<Home />} />
             </Routes>
           </div>
         </div>
