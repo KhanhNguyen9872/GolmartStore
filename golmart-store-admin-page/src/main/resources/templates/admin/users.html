@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Users</h1>
-        <a th:href="@{/admin-panel/users/new}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a th:href="@{/admin/users/new}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> Add New User
         </a>
     </div>
@@ -39,8 +39,8 @@
                         <td th:text="${user.email}"></td>
                         <td th:text="${user.enabled} ? 'Active' : 'Inactive'"></td>
                         <td>
-                            <a th:href="@{/admin-panel/users/{id}/edit(id=${user.id})}" class="btn btn-sm btn-primary">Edit</a>
-                            <form th:action="@{/admin-panel/users/{id}/delete(id=${user.id})}" method="post" style="display:inline;">
+                            <a th:href="@{/admin/users/{id}/edit(id=${user.id})}" class="btn btn-sm btn-primary">Edit</a>
+                            <form th:action="@{/admin/users/{id}/delete(id=${user.id})}" method="post" style="display:inline;">
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                             </form>
                         </td>

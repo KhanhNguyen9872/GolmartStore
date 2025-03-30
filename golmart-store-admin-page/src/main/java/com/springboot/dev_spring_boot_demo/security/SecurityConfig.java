@@ -34,27 +34,45 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/admin-panel/admins/**").hasRole("SYSTEM")    // Restrict /admin-panel/admins and subpaths to ROLE_SYSTEM
-                                .requestMatchers("/admin-panel/users/**").hasRole("ADMIN")     // Restrict /admin-panel/users and subpaths to ROLE_ADMIN
-                                .requestMatchers("/admin-panel/**").authenticated()            // Allow all authenticated users to /admin-panel and subpaths
-                                .requestMatchers("/admin-panel/login", "/admin-panel/logout").permitAll()              // Allow public access to login and logout
-                                .anyRequest().authenticated()                                  // All other requests require authentication
+                                // Allow public access to static resources
+                                .requestMatchers(
+                                        "/admin/img/**",
+                                        "/admin/css/**",
+                                        "/admin/images/**",
+                                        "/admin/js/**",
+                                        "/admin/scss/**",
+                                        "/admin/vendor/**",
+                                        "/admin/fonts/**",
+                                        "/admin/static/**"  // Add any other static paths as needed
+                                ).permitAll()
+                                .requestMatchers(
+                                        "/admin/redirect"
+                                ).authenticated()
+                                .requestMatchers(
+                                        "/admin/accessDenied"
+                                ).permitAll()
+                                // Role-based access for specific paths
+                                .requestMatchers("/system/**").hasRole("SYSTEM")
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/admin/login", "/admin/logout").permitAll()
+                                .anyRequest().authenticated()  // All other requests require authentication
                 )
                 .formLogin(form ->
                         form
-                                .loginPage("/admin-panel/login")
-                                .loginProcessingUrl("/admin-panel/authenticateTheUser")
-                                .defaultSuccessUrl("/admin-panel", true)
+                                .loginPage("/admin/login")
+                                .loginProcessingUrl("/admin/authenticateTheUser")
+                                .defaultSuccessUrl("/admin/redirect", true)
                                 .permitAll()
                 )
                 .logout(logout ->
                         logout
-                                .logoutUrl("/admin-panel/logout").logoutRequestMatcher(new AntPathRequestMatcher("/admin-panel/logout", "GET"))
-                                .logoutSuccessUrl("/admin-panel/login?logout")
+                                .logoutUrl("/admin/logout").logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout", "GET"))
+                                .logoutSuccessUrl("/admin/login?logout")
                                 .permitAll()
                 )
                 .exceptionHandling(configurer ->
-                        configurer.accessDeniedPage("/admin-panel/accessDenied")
+                        configurer
+                                .accessDeniedPage("/admin/accessDenied")  // Access denied (403)
                 )
                 .userDetailsService(username -> {
                     try {
@@ -66,4 +84,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }

@@ -13,12 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
-        // Map URL /profile_pictures/** to the local directory ./profile_pictures/
-        registry.addResourceHandler("/profile_pictures/**")
-                .addResourceLocations("file:./profile_pictures/");
-
-        registry.addResourceHandler("/admin-panel/img/**")
+        registry.addResourceHandler("/admin/img/**")
                 .addResourceLocations("file:" + uploadDir + "/");
     }
 }

@@ -25,7 +25,7 @@
       <!-- Display general error message if present -->
       <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
 
-      <form th:action="@{/admin-panel/products}" method="post" th:object="${product}" enctype="multipart/form-data">
+      <form th:action="@{/admin/products}" method="post" th:object="${product}" enctype="multipart/form-data">
         <input type="hidden" th:field="*{id}" />
 
         <div class="form-group">
@@ -62,7 +62,7 @@
           <!-- Image Preview and Upload -->
           <div>
             <label>Current Image:</label>
-            <img th:src="${product.image != null ? '/admin-panel' + product.image : '/admin-panel/images/default-product.png'}"
+            <img th:src="${product.image != null ? '/admin' + product.image : '/admin/images/default-product.png'}"
                  alt="Product Image" class="preview-image" />
           </div>
           <div>
@@ -73,7 +73,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
-        <a th:href="@{/admin-panel/products}" class="btn btn-secondary">Cancel</a>
+        <a th:href="@{/admin/products}" class="btn btn-secondary">Cancel</a>
       </form>
     </div>
   </div>

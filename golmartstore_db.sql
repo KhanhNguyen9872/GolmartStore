@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 29, 2025 lúc 11:52 AM
+-- Thời gian đã tạo: Th3 30, 2025 lúc 01:20 PM
 -- Phiên bản máy phục vụ: 8.0.40
 -- Phiên bản PHP: 8.2.12
 
@@ -42,7 +42,6 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `full_name`, `username`, `password`, `email`, `enabled`) VALUES
 (1, 'Admin User1', 'admin1', '$2a$12$YNqySO48RoULQTRRMyY85eivC5gcXhDkpU8Uf/RoBPJZ6BqtTxC9G', 'admin@example.com', 1),
-(2, 'Home User', 'home', '$2a$10$0KI70l2ggWA.u3KNAonfhuLfVtqfSosylQ7u5vJ5gNJkuAV0I2i1u', 'home@example.com', 1),
 (4, 'System User', 'system', '$2a$10$n42c5s9VxNnlVMC22S5b5.qn5wEcvuxBeAW/3e3DbRQRiJDVVdc1G', 'system@example.com', 1);
 
 -- --------------------------------------------------------
@@ -62,12 +61,9 @@ CREATE TABLE `authorities` (
 --
 
 INSERT INTO `authorities` (`id`, `username`, `authority`) VALUES
-(13, 'system', 'ROLE_HOME'),
 (14, 'system', 'ROLE_ADMIN'),
 (15, 'system', 'ROLE_SYSTEM'),
-(16, 'admin1', 'ROLE_HOME'),
-(17, 'admin1', 'ROLE_ADMIN'),
-(19, 'home', 'ROLE_HOME');
+(17, 'admin1', 'ROLE_ADMIN');
 
 -- --------------------------------------------------------
 

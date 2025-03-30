@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org/layout" layout:decorate="~{admin/layout/layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org/layout" layout:decorate="~{system/layout/layout}">
 <head>
     <title>Admin Form</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -7,7 +7,7 @@
 <body>
 <div layout:fragment="main-content">
     <h2 th:text="${admin.id != null} ? 'Edit Admin' : 'New Admin'"></h2>
-    <form th:action="@{/admin-panel/admins}" th:object="${admin}" method="post">
+    <form th:action="@{/system/admins}" th:object="${admin}" method="post">
         <input type="hidden" th:field="*{id}" />
 
         <!-- Full Name -->
@@ -57,7 +57,7 @@
 
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">Save</button>
-        <a th:href="@{/admin-panel/admins}" class="btn btn-secondary">Cancel</a>
+        <a th:href="@{/system/admins}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
 </body>

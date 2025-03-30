@@ -15,7 +15,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Products</h1>
-        <a th:href="@{/admin-panel/products/new}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a th:href="@{/admin/products/new}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> Add New Product
         </a>
     </div>
@@ -41,14 +41,14 @@
                     <tr th:each="product : ${products}">
                         <td th:text="${product.id}"></td>
                         <td>
-                            <img th:src="${product.image != null ? '/admin-panel' + product.image : '/admin-panel/images/default-product.png'}"
+                            <img th:src="${product.image != null ? '/admin' + product.image : '/admin/images/default-product.png'}"
                                  class="product-image" alt="Product Image" />
                         </td>
                         <td th:text="${product.name}"></td>
                         <td th:text="${product.price}"></td>
                         <td>
-                            <a th:href="@{/admin-panel/products/{id}/edit(id=${product.id})}" class="btn btn-sm btn-primary">Edit</a>
-                            <form th:action="@{/admin-panel/products/{id}/delete(id=${product.id})}" method="post" style="display:inline;">
+                            <a th:href="@{/admin/products/{id}/edit(id=${product.id})}" class="btn btn-sm btn-primary">Edit</a>
+                            <form th:action="@{/admin/products/{id}/delete(id=${product.id})}" method="post" style="display:inline;">
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                             </form>
                         </td>

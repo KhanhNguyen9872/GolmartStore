@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping ("/")
 public class LoginController {
-    @GetMapping("/admin-panel/login")
+    @GetMapping("/admin/login")
     public String login() {
         return "login";
     }
 
-    @GetMapping("/admin-panel/accessDenied")
+    @GetMapping("/admin/accessDenied")
     public String accessDenied() {
         return "accessDenied";
     }

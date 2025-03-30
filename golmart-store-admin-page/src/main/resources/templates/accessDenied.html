@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <title>Access Denied</title>
@@ -17,10 +17,6 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        .access-denied-container img {
-            max-width: 100%;
-            height: auto;
-        }
         .access-denied-container h1 {
             font-size: 2.5rem;
             margin-top: 20px;
@@ -36,7 +32,12 @@
 <div class="access-denied-container">
     <h1>Access Denied</h1>
     <p>Sorry, you don't have permission to access this page.</p>
-    <a href="/admin-panel" class="btn btn-primary">Go Home</a>
+    <a href="/admin/redirect" class="btn btn-primary">Go Home</a>
+
+    <!-- Show Logout button if the user is logged in -->
+    <c:if test="${not empty sessionScope.SPRING_SECURITY_CONTEXT}">
+        <a href="/admin/logout" class="btn btn-danger">Logout</a>
+    </c:if>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

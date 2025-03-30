@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/admin-panel")
+@RequestMapping("/admin")
 public class ProductController {
 
     private final ProductService productService;
@@ -88,7 +88,7 @@ public class ProductController {
         }
 
         productService.save(product);
-        return "redirect:/admin-panel/products";
+        return "redirect:/admin/products";
     }
 
     @GetMapping("/products/{id}/edit")
@@ -96,7 +96,7 @@ public class ProductController {
         model.addAttribute("fullName", admin1.getFullName());
         Product product = productService.findById(id);
         if (product == null) {
-            return "redirect:/admin-panel/products";
+            return "redirect:/admin/products";
         }
         model.addAttribute("product", product);
         return "admin/product-form";
@@ -105,7 +105,7 @@ public class ProductController {
     @PostMapping("/products/{id}/delete")
     public String deleteProduct(@PathVariable("id") Long id) {
         productService.deleteById(id);
-        return "redirect:/admin-panel/products";
+        return "redirect:/admin/products";
     }
 
     private String getFileExtension(String filename) {
