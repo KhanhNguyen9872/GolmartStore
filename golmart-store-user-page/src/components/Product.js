@@ -133,7 +133,7 @@ function Product() {
             onClick={handleAddToCart}
             className="bg-green-200 text-black font-bold py-2 px-6 rounded-lg"
           >
-            Add to Cart
+            Buy now
           </button>
         </div>
       </div>
